@@ -1,35 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import ClozeQuestion from "./assets/components/ClozeQuestion";
+import ClozeAnswer from "./assets/components/ClozeAnswer";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [sentence, setSentence] = useState("");
+
+  let clozeSentences = {
+    de: [
+      "___ donde eres?",
+      "El libro ___ mi hermana está en la mesa.",
+      "La película ___ terror me dio miedo.",
+    ],
+  };
+
+  // Randomized return function
+  function randomCloze() {
+    let i = Math.floor(Math.random() * clozeSentences.de.length);
+    // console.log(i);
+    let newSentence = clozeSentences.de[i];
+    setSentence(newSentence);
+    return newSentence;
+  }
+
+  useEffect(() => {
+    randomCloze();
+  }, []);
+
+  const checkAnswer = (answer) => {
+    const key = "de";
+
+    console.log("Key: ", key);
+    console.log("Answer: ", answer);
+
+    if (answer === key) {
+      console.log("Correct!");
+      return true;
+    } else {
+      console.log("Wrong!");
+      return false;
+    }
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h2>Cloze Quiz</h2>
+      <ClozeQuestion sentence={sentence} />
+      <ClozeAnswer checkAnswer={checkAnswer} randomCloze={randomCloze} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
