@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import ClozeQuestion from "./assets/components/ClozeQuestion";
-import ClozeAnswer from "./assets/components/ClozeAnswer";
+import ClozeQuestion from "./components/ClozeQuestion";
+import ClozeAnswer from "./components/ClozeAnswer";
 
 function App() {
   const [sentence, setSentence] = useState("");
