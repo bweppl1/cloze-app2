@@ -1,9 +1,105 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
+:root {
+  --primary: #9958be; /* Main color */
+  --primary-light: #ca88f0; /* Lighter primary for highlights */
+  --primary-dark: #6a2d8f;  /* Darker shade for contrast */
+
+  /* Neutrals */
+  --background: #f9f5ff;    /* Very light purple-white */
+  --text: #2e2a33;          /* Dark gray with purple undertone */
+  --text-light: #5a5560;    /* Lighter text for secondary content */
+
+  /* Accents */
+  --accent-teal: #2dd4bf;   /* Vibrant teal for interactive elements */
+  --accent-gold: #fbbf24;   /* Warm gold for highlights */
+  --accent-pink: #ec4899;   /* Energetic pink for alerts/CTAs */
+
+  /* Feedback Colors */
+  --success: #10b981;       /* Green */
+  --error: #ef4444;         /* Red */
+  --warning: #f59e0b;       /* Amber */
+}
+
+.primary-bg {
+  background-color: var(--primary);
+}
+
 * {
   font-family: "Ubuntu", sans-serif;
+  color: var(--text);
+  margin: 0;
+  padding: 0;
 }
 
 a {
   text-decoration: none;
+}
+
+header {
+  background-color: var(--primary);
+  margin: 0;
+  padding: 50px;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+}
+
+header h2 {
+  color: #fff;
+}
+
+div.pages, div.optionsBar {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  width: 50%;
+  margin: 50px auto;
+  display: flex;
+  text-align: center;
+}
+
+div.pages {
+  flex-direction: column;
+  padding: 50px 0;
+}
+
+div.optionsBar {
+  padding: 0;
+}
+
+p {
+  font-size: 1.4em;
+  padding: 25px;
+}
+
+input {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 0 10px;
+}
+
+button.answerButtons {
+  border: 0;
+  border-radius: 5px;
+  margin: 0 15px;
+  background-color: var(--primary);
+  color: #FFF;
+  padding: 10px 25px;
+}
+
+button.answerButtons:hover {
+  background-color: var(--primary-light);
+}
+
+button.settingsButton {
+  border: 0;
+  border-radius: 5px;
+  margin: 0 15px;
+  background-color: var(--accent-teal);
+  color: #FFF;
+  padding: 10px 25px;
+}
+
+button.settingsButton:hover {
+  background-color: var(--accent-gold);
 }
