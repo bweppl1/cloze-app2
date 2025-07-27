@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const ClozeQuestion = () => {
+const ClozeQuestion = ({ showTranslations }) => {
   const [cloze, setCloze] = useState(null);
 
   const top10 = ["de", "el", "la", "que", "en", "y", "a", "del", "se", "los"];
@@ -60,9 +60,12 @@ const ClozeQuestion = () => {
 
   const generateCloze = () => {
     const randomWord = top10[Math.floor(Math.random() * top10.length)];
-
     const clozes = clozeSentences[randomWord];
-    const randomCloze = clozes[Math.floor(Math.random() * clozes.length)];
+    let randomCloze = clozes[Math.floor(Math.random() * clozes.length)];
+
+    const withTranslation = showTranslations
+      ? randomCloze
+      : randomCloze.split("(")[0].trim();
 
     setCloze(randomCloze);
 
@@ -72,11 +75,24 @@ const ClozeQuestion = () => {
       .slice(0, 3);
 
     setCloze({
-      sentence: randomCloze,
+      sentence: withTranslation,
+      fullSentence: randomCloze,
       options: [...wrongOptions, randomWord].sort(() => 0.5 - Math.random()),
       answer: randomWord,
     });
   };
+
+  // Toggle translations
+  useEffect(() => {
+    if (cloze) {
+      setCloze((prev) => ({
+        ...prev,
+        sentence: showTranslations
+          ? prev.fullSentence
+          : prev.fullSentence.split("(")[0].trim(),
+      }));
+    }
+  }, [showTranslations]);
 
   // Generate first quiz on component mount
   useEffect(() => {

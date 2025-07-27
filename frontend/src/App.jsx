@@ -5,14 +5,22 @@ import OptionsBar from "./components/OptionsBar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
+  const [showTranslations, setShowTranslations] = useState(true);
+
   return (
     <div className="App">
       <BrowserRouter>
         <NavBar />
-        <OptionsBar />
+        <OptionsBar
+          onToggle={setShowTranslations}
+          showTranslations={showTranslations}
+        />
         <div className="pages">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/"
+              element={<Home showTranslations={showTranslations} />}
+            />
           </Routes>
         </div>
       </BrowserRouter>
