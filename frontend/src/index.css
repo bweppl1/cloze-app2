@@ -20,6 +20,9 @@
   --error: #ef4444;         /* Red */
   --warning: #f59e0b;       /* Amber */
 }
+#root {
+  width: 100%;
+}
 
 .primary-bg {
   background-color: var(--primary);
@@ -46,35 +49,70 @@ header {
   padding: 50px;
   border-bottom: 1px solid #ddd;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  width: 100%;
 }
 
 header h2 {
   color: #fff;
 }
 
-div.pages, div.optionsBar {
+div.App {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+div.pages, div.settingsBar, div.userDisplay {
+  padding: 50px 0;
   border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
-  width: 50%;
   margin: 50px auto;
   display: flex;
   text-align: center;
+  justify-content: center;
 }
 
 div.pages {
+  width: 50%;
+}
+
+div.settingsBar, div.userDisplay {
   flex-direction: column;
-  padding: 50px 0;
-}
-
-div.optionsBar {
+  justify-content: start;
   padding: 0;
-  align-items: center;
+  width: 20%;
 }
 
-div.settingsCog {
+div.settingsHeader, div.userHeading {
+  background-color: var(--primary);
   padding: 15px;
+  margin: 0;
+  display: flex;
+  gap: 15px;
 }
+
+div.settingsContent, div.userContent {
+  padding: 10px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+div.experiencePip {
+  border: 1px solid var(--primary);
+  border-radius: 50%;
+  width: 1em;
+  height: 1em;
+}
+
+div.fullPip {
+  background-color: var(--primary);
+}
+
+
 
 div.resultFeedback {
   width: 200px;

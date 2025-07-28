@@ -142,7 +142,9 @@ const ClozeQuestion = ({ showTranslations }) => {
     <div className="clozeQuestion">
       <h2>Fill in the blank:</h2>
       <p className={resultFeedback.isCorrect ? "correct" : ""}>
-        {cloze.sentence}
+        {resultFeedback.isCorrect
+          ? cloze.sentence.replace("___", cloze.answer)
+          : cloze.sentence}
       </p>
 
       <div className="options">
