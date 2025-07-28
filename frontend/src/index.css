@@ -32,6 +32,10 @@
   padding: 0;
 }
 
+.white {
+  color: #FFF;
+}
+
 a {
   text-decoration: none;
 }
@@ -65,14 +69,40 @@ div.pages {
 
 div.optionsBar {
   padding: 0;
-  background-color: var(--primary-light);
-  padding: 20px;
   align-items: center;
+}
+
+div.settingsCog {
+  padding: 15px;
+}
+
+div.resultFeedback {
+  width: 200px;
+  margin: 15px auto 0 auto;
+  padding: 15px 30px;
+}
+
+div.correct {
+  border: 1px solid var(--success);
+  color: var(--success);
+}
+
+div.incorrect {
+  border: 1px solid var(--error);
+  color: var(--error);
 }
 
 p {
   font-size: 1.4em;
   padding: 25px;
+}
+
+p.correct {
+  color: var(--success);
+}
+
+p.incorrect {
+  color: var(--error);
 }
 
 input {

@@ -3,7 +3,10 @@ import { useState } from "react";
 const OptionsBar = ({ showTranslations, onToggle }) => {
   return (
     <div className="optionsBar">
-      <span className="material-symbols-outlined">settings</span>
+      <div className="settingsCog primary-bg">
+        <span className="material-symbols-outlined white">settings</span>
+      </div>
+
       <label>
         <input
           type="checkbox"
