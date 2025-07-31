@@ -101,15 +101,20 @@ div.settingsContent, div.userContent {
   flex-direction: column;
 }
 
+div.experienceBar {
+  display: flex;
+}
+
 div.experiencePip {
-  border: 1px solid var(--primary);
+  border: 3px solid var(--accent-teal);
   border-radius: 50%;
   width: 1em;
   height: 1em;
+  margin: 5px;
 }
 
 div.fullPip {
-  background-color: var(--primary);
+  background-color: var(--accent-teal);
 }
 
 

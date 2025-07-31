@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 
-const ClozeQuestion = ({ showTranslations }) => {
-  const [cloze, setCloze] = useState(null);
-  const [isAnswering, setIsAnswering] = useState(false);
+const ClozeQuestion = ({ showTranslations, onAnswer }) => {
+  const [cloze, setCloze] = useState(null); // setting the cloze to use
+  const [isAnswering, setIsAnswering] = useState(false); // to block multiclicks
   const [resultFeedback, setResultFeeback] = useState({
     message: "",
     isCorrect: null,
-  });
+  }); // displays "correct" or "wrong"
 
   // top 10 most common words
   const top10 = ["de", "el", "la", "que", "en", "y", "a", "del", "se", "los"];
@@ -75,7 +75,7 @@ const ClozeQuestion = ({ showTranslations }) => {
     let randomCloze = clozes[Math.floor(Math.random() * clozes.length)];
 
     // displaying translation based on toggle flag
-    const noTranslation = showTranslations
+    const noTranslation = showTranslations // update variable name, its opposite
       ? randomCloze
       : randomCloze.split("(")[0].trim();
 
@@ -117,6 +117,7 @@ const ClozeQuestion = ({ showTranslations }) => {
   // Loading message
   if (!cloze) return <div>Loading quiz...</div>;
 
+  // Events to trigger on each answer
   const handleAnswer = (selectedOption) => {
     if (isAnswering) {
       return;
@@ -128,6 +129,26 @@ const ClozeQuestion = ({ showTranslations }) => {
       isCorrect,
     });
 
+    onAnswer(isCorrect);
+
+    // // google tts
+    // const speakSpanish = (text) => {
+    //   if ("speechSynthesis" in window) {
+    //     const utterance = new SpeechSynthesisUtterance(text);
+    //     utterance.lang = "es-ES"; // Spanish (Spain)
+    //     utterance.rate = 1; // titrate speed
+    //     window.speechSynthesis.speak(utterance);
+    //   } else {
+    //     console.warn("Speech synthesis not supported");
+    //   }
+    // };
+
+    // // delay for tts
+    // setTimeout(() => {
+    //   speakSpanish(cloze.sentence.split("(")[0].trim());
+    // }, 500); // 0.5 seconds delay
+
+    // blocks multi clicks
     setIsAnswering(true);
 
     // pause after answering
@@ -135,7 +156,7 @@ const ClozeQuestion = ({ showTranslations }) => {
       generateCloze();
       setResultFeeback({ message: "", isCorrect: null });
       setIsAnswering(false);
-    }, 1500); //1.5 sec delay on answer
+    }, 2500); //2.5 sec delay on answer
   };
 
   return (

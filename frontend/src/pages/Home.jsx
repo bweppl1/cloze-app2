@@ -1,9 +1,9 @@
 import ClozeQuestion from "../components/ClozeQuestion";
 
-function Home({ showTranslations }) {
+function Home({ showTranslations, onAnswer }) {
   return (
     <div className="Home">
-      <ClozeQuestion showTranslations={showTranslations} />
+      <ClozeQuestion onAnswer={onAnswer} showTranslations={showTranslations} />
     </div>
   );
 }

@@ -12,21 +12,22 @@ Phase 1:
 [X] Correct/Incorrect UI Display
 
 POLISH UI
-[ ] User Info Bar
-- [ ] User level
-- [ ] User experience
+[X] User Info Bar
+- [X] User level
+- [X] User experience
 [ ] Settings Bar
-- [ ] Show Translations
+- [X] Show Translations
 - [ ] Input text -or- Multiple choice
-- [ ] Sound
+- [X] Sound
 [ ] ?Static window size
 
 ==========================
 
 Phase 2
 
-[ ] Implement 2nd try
-[ ] Mastery bar/rudementary point system with local storage
+[X] Mastery bar/rudementary point system
+[X] local storage
+[X] Cloze dictation*** implemented and commented out as the API version is garbage at the moment, revisit in the future with a different implementation
 
 ==========================
 
@@ -35,3 +36,13 @@ Phase 3
 [ ] Migrate data to MongoDB
 [ ] Implement difficulty scaling with 10, 25, 50 etc. words
 [ ] Authentication/Progress Tracking
+
+
+==========================
+
+Gamification
+
+[ ] Achievments
+[ ] Category Performance Metrics
+[ ] Streak Counter
+[ ] 

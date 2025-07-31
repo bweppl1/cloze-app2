@@ -1,6 +1,9 @@
-import { useState } from "react";
-
-const OptionsBar = ({ showTranslations, onToggle }) => {
+const OptionsBar = ({
+  playSound,
+  onSoundToggle,
+  showTranslations,
+  onTranslationToggle,
+}) => {
   return (
     <div className="settingsBar">
       <div className="settingsHeader">
@@ -12,9 +15,17 @@ const OptionsBar = ({ showTranslations, onToggle }) => {
           <input
             type="checkbox"
             checked={showTranslations}
-            onChange={() => onToggle(!showTranslations)}
+            onChange={() => onTranslationToggle(!showTranslations)}
           ></input>
           Show Translations
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={playSound}
+            onChange={() => onSoundToggle(!playSound)}
+          ></input>
+          Play Sounds
         </label>
       </div>
     </div>
