@@ -44,5 +44,5 @@ Gamification
 
 [ ] Achievments
 [ ] Category Performance Metrics
-[ ] Streak Counter
+[X] Streak Counter
 [ ] 

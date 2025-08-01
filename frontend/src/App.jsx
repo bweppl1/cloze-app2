@@ -31,9 +31,9 @@ function App() {
 
   const handleAnswer = (isCorrect) => {
     setUserData((prev) => {
-      let newLvl = prev.lvl;
-      let newXp = prev.xp;
-      let newStreak = prev.streak;
+      let newLvl = prev.lvl || 0;
+      let newXp = prev.xp || 0;
+      let newStreak = prev.streak || 0;
 
       // answer feedback sound
       const sound = isCorrect ? audio.correct : audio.incorrect;
@@ -48,6 +48,7 @@ function App() {
         newStreak = 0;
       }
       if (isCorrect) {
+        console.log(userData.streak);
         newXp += 1;
         newStreak += 1;
       }
@@ -61,6 +62,7 @@ function App() {
       return {
         xp: newXp,
         lvl: newLvl,
+        streak: newStreak,
       };
     });
   };

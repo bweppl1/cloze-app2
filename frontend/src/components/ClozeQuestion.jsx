@@ -156,7 +156,7 @@ const ClozeQuestion = ({ showTranslations, onAnswer }) => {
       generateCloze();
       setResultFeeback({ message: "", isCorrect: null });
       setIsAnswering(false);
-    }, 2500); //2.5 sec delay on answer
+    }, 2000); //2 sec delay on answer
   };
 
   return (

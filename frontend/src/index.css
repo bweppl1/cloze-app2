@@ -88,6 +88,7 @@ div.settingsBar, div.userDisplay {
 
 div.settingsHeader, div.userHeading {
   background-color: var(--primary);
+  border-radius: 5px 5px 0 0;
   padding: 15px;
   margin: 0;
   display: flex;
@@ -117,7 +118,9 @@ div.fullPip {
   background-color: var(--accent-teal);
 }
 
-
+label {
+  margin-bottom: 10px;
+}
 
 div.resultFeedback {
   width: 200px;
