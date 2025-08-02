@@ -57,7 +57,7 @@ const ClozeQuestion = ({ showTranslations, onAnswer }) => {
     onAnswer(isCorrect);
   };
 
-  if (loading) return <div>Loading {category} questions...</div>;
+  // if (loading) return <div>Loading {category} questions...</div>;
   if (error) return <div>Error: {error}</div>;
   if (!clozeData) return <div>No question data available</div>;
 
