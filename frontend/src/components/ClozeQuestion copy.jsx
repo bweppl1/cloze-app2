@@ -129,7 +129,7 @@ const ClozeQuestion = ({ showTranslations, onAnswer }) => {
       isCorrect,
     });
 
-    onAnswer(isCorrect);
+    // onAnswer(isCorrect);
 
     // // google tts
     // const speakSpanish = (text) => {

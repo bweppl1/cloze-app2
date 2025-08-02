@@ -52,6 +52,10 @@ header {
   width: 100%;
 }
 
+h4 {
+  color: var(--text-light);
+}
+
 header h2 {
   color: #fff;
 }
@@ -85,7 +89,7 @@ div.App {
 }
 
 div.pages, div.settingsBar, div.userDisplay {
-  padding: 50px 0;
+  padding: 0;
   border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
@@ -97,17 +101,51 @@ div.pages, div.settingsBar, div.userDisplay {
 
 div.pages {
   width: 50%;
-  justify-content: flex-start;
-  padding: 50px;
+}
+
+/* HOME & CATEGORY SELECT PAGE */
+
+div.Home {
+  display: flex;
+  width: 100%;div.categorySelect h3 {
+  padding: 15px 0;
+}
+  padding: 0 50px;
 }
 
 div.categorySelect {
   text-align: left;
 }
 
-div.categorySelect h4, h3 {
+div.categorySelect h3 {
   padding: 15px 0;
 }
+
+div.categorySelect h4 {
+  padding: 0 15px;
+}
+
+
+/* CLOZE QUIZ PAGE */
+
+div.Quiz {
+  padding: 50px;
+}
+
+div.Quiz h2 {
+  padding: 15px;
+}
+
+div.clozeSentence {
+  font-size: 1.5rem;
+}
+
+div.translation {
+  color: var(--text-light);
+  font-size: 1rem;
+  padding: 15px;
+}
+
 
 /* SIDE BARS */
 
@@ -194,7 +232,7 @@ input {
 button.primaryButton {
   border: 0;
   border-radius: 5px;
-  margin: 0 15px;
+  margin: 15px;
   background-color: var(--primary);
   color: #FFF;
   padding: 10px 25px;

@@ -37,10 +37,10 @@ export const getRandomCloze = async (req, res) => {
     );
 
     res.json({
-      sentence: randomSentence,
+      sentence: randomSentence.split("(")[0].trim(),
       options: allOptions,
       correctAnswer: randomWord.word,
-      translation: randomSentence.match(/\(([^)]+)\)/)?.[1] || "", // Extract translation
+      translation: randomSentence.split("(")[1].slice(0, -1), // Extract translation
     });
   } catch (error) {
     res.status(500).json({ "clozeController error": error.message });

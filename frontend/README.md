@@ -33,7 +33,7 @@ Phase 2
 
 Phase 3
 
-[ ] Migrate data to MongoDB
+[X] Migrate data to MongoDB
 [ ] Implement difficulty scaling with 10, 25, 50 etc. words
 [ ] Authentication/Progress Tracking
 
