@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import Home from "./pages/Home";
 import NavBar from "./components/NavBar";
 import UserDisplay from "./components/UserDisplay";
 import OptionsBar from "./components/OptionsBar";
 import correctSound from "./assets/sounds/correct.mp3";
 import incorrectSound from "./assets/sounds/incorrect.wav";
+import Home from "./pages/Home";
+import Quiz from "./pages/Quiz";
 import { saveUserData, loadUserData } from "./services/userService";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -78,10 +79,11 @@ function App() {
         />
         <div className="pages">
           <Routes>
+            <Route path="/" element={<Home />} />
             <Route
-              path="/"
+              path="/quiz"
               element={
-                <Home
+                <Quiz
                   onAnswer={handleAnswer}
                   showTranslations={showTranslations}
                 />

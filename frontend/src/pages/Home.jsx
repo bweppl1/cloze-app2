@@ -1,9 +1,9 @@
-import ClozeQuestion from "../components/ClozeQuestion";
+import CategorySelect from "../components/CategorySelect";
 
 function Home({ showTranslations, onAnswer }) {
   return (
     <div className="Home">
-      <ClozeQuestion onAnswer={onAnswer} showTranslations={showTranslations} />
+      <CategorySelect />
     </div>
   );
 }

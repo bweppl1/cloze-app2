@@ -56,6 +56,26 @@ header h2 {
   color: #fff;
 }
 
+div.navBar {
+  display: flex;
+  justify-content: space-between;
+}
+
+div.navBar ul {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  list-style: none;
+}
+
+div.navBar a {
+  color: #fff;
+}
+
+div.navBar li {
+  text-decoration: none;
+}
+
 div.App {
   display: flex;
   flex-wrap: wrap;
@@ -77,7 +97,19 @@ div.pages, div.settingsBar, div.userDisplay {
 
 div.pages {
   width: 50%;
+  justify-content: flex-start;
+  padding: 50px;
 }
+
+div.categorySelect {
+  text-align: left;
+}
+
+div.categorySelect h4, h3 {
+  padding: 15px 0;
+}
+
+/* SIDE BARS */
 
 div.settingsBar, div.userDisplay {
   flex-direction: column;
@@ -122,6 +154,8 @@ label {
   margin-bottom: 10px;
 }
 
+/* FEEDBACK */
+
 div.resultFeedback {
   width: 200px;
   margin: 15px auto 0 auto;
@@ -157,7 +191,7 @@ input {
   margin: 0 10px;
 }
 
-button.answerButtons {
+button.primaryButton {
   border: 0;
   border-radius: 5px;
   margin: 0 15px;
@@ -166,7 +200,7 @@ button.answerButtons {
   padding: 10px 25px;
 }
 
-button.answerButtons:hover {
+button.primaryButton:hover {
   background-color: var(--primary-light);
 }
 
