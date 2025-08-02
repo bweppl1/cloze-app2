@@ -17,7 +17,7 @@ const wordSchema = new Schema({
   },
   tags: {
     type: [String],
-    reqiured: true,
+    required: true,
     default: [],
   },
 });

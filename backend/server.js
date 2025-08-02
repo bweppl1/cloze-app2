@@ -1,4 +1,4 @@
-import dotenv from "dotenv";
+import "dotenv/config";
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -8,7 +8,7 @@ import clozeRoutes from "./routes/clozeRoutes.js";
 const port = process.env.PORT;
 
 // abstract sensitive information
-dotenv.config();
+// dotenv.config();
 
 // express
 const app = express();
@@ -20,7 +20,9 @@ app.use("/api/cloze", clozeRoutes);
 
 // connect to db
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGO_URI, {
+    dbName: "cloze-encounters",
+  })
   .then(() => {
     app.listen(port, () => {
       console.log(`Connected to DB & Listening on port ${port}!`);
