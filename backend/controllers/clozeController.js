@@ -1,4 +1,4 @@
-import Word from "../models/wordModel";
+import Word from "../models/wordModel.js";
 import mongoose from "mongoose";
 
 // @desc    Get random cloze by category

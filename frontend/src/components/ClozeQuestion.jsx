@@ -1,138 +1,65 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const ClozeQuestion = ({ showTranslations, onAnswer }) => {
-  const [cloze, setCloze] = useState(null); // setting the cloze to use
-  const [isAnswering, setIsAnswering] = useState(false); // to block multiclicks
-  const [resultFeedback, setResultFeeback] = useState({
-    message: "",
-    isCorrect: null,
-  }); // displays "correct" or "wrong"
+  const { category } = useParams(); // Gets "top10" from URL
+  const [clozeData, setClozeData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [resultFeedback, setResultFeeback] = useState("");
 
-  // generating cloze question
-  const generateCloze = () => {
-    // choosing a random word from top10
-    const randomWord = top10[Math.floor(Math.random() * top10.length)];
-    // isolating clozes related to the chosen word
-    const clozes = clozeSentences[randomWord];
-    // choosing a random cloze related to the selected word
-    let randomCloze = clozes[Math.floor(Math.random() * clozes.length)];
-
-    // displaying translation based on toggle flag
-    const noTranslation = showTranslations // update variable name, its opposite
-      ? randomCloze
-      : randomCloze.split("(")[0].trim();
-
-    // set cloze state
-    // setCloze(randomCloze);
-
-    // choosing 3 incorrect answers
-    const wrongOptions = top10
-      .filter((option) => option !== randomWord)
-      .sort(() => 0.5 - Math.random())
-      .slice(0, 3);
-
-    // set cloze state
-    setCloze({
-      sentence: noTranslation, // cloze without translation
-      fullSentence: randomCloze, // cloze with translation
-      options: [...wrongOptions, randomWord].sort(() => 0.5 - Math.random()), // 3 wrong answers + 1 correct answer
-      answer: randomWord, // correct answer
-    });
-  };
-
-  // Toggle translations instantly
   useEffect(() => {
-    if (cloze) {
-      setCloze((prev) => ({
-        ...prev,
-        sentence: showTranslations
-          ? prev.fullSentence
-          : prev.fullSentence.split("(")[0].trim(),
-      }));
-    }
-  }, [showTranslations]);
+    const fetchCloze = async () => {
+      try {
+        const response = await fetch(`/api/cloze/${category}`);
+        if (!response.ok) throw new Error("Failed to fetch");
+        const data = await response.json();
+        setClozeData(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  // Generate first quiz on component mount
-  useEffect(() => {
-    generateCloze();
-  }, []);
+    fetchCloze();
+  }, [category]); // Refetches when category changes
 
-  // Loading message
-  if (!cloze) return <div>Loading quiz...</div>;
+  if (loading) return <div>Loading {category} questions...</div>;
+  if (error)
+    return (
+      <div>
+        Error loading {category}: {error}
+      </div>
+    );
 
-  // Events to trigger on each answer
-  const handleAnswer = (selectedOption) => {
-    if (isAnswering) {
-      return;
-    }
+  const isCorrect = selectedOption === cloze.answer;
+  setResultFeeback({
+    message: isCorrect ? "Correct!!" : "WRONG!",
+    isCorrect,
+  });
 
-    const isCorrect = selectedOption === cloze.answer;
-    setResultFeeback({
-      message: isCorrect ? "Correct!!" : "WRONG!",
-      isCorrect,
-    });
-
-    onAnswer(isCorrect);
-
-    // // google tts
-    // const speakSpanish = (text) => {
-    //   if ("speechSynthesis" in window) {
-    //     const utterance = new SpeechSynthesisUtterance(text);
-    //     utterance.lang = "es-ES"; // Spanish (Spain)
-    //     utterance.rate = 1; // titrate speed
-    //     window.speechSynthesis.speak(utterance);
-    //   } else {
-    //     console.warn("Speech synthesis not supported");
-    //   }
-    // };
-
-    // // delay for tts
-    // setTimeout(() => {
-    //   speakSpanish(cloze.sentence.split("(")[0].trim());
-    // }, 500); // 0.5 seconds delay
-
-    // blocks multi clicks
-    setIsAnswering(true);
-
-    // pause after answering
-    setTimeout(() => {
-      generateCloze();
-      setResultFeeback({ message: "", isCorrect: null });
-      setIsAnswering(false);
-    }, 2000); //2 sec delay on answer
-  };
+  onAnswer(isCorrect);
 
   return (
-    <div className="clozeQuestion">
-      <h2>Fill in the blank:</h2>
-      <p className={resultFeedback.isCorrect ? "correct" : ""}>
-        {resultFeedback.isCorrect
-          ? cloze.sentence.replace("___", cloze.answer)
-          : cloze.sentence}
-      </p>
+    <div className="cloze-container">
+      <h2>{category.replace(/([A-Z])/g, " $1").trim()} Questions</h2>
 
-      <div className="options">
-        {cloze.options.map((option) => (
+      {/* Display the cloze question */}
+      <div className="cloze-sentence">{clozeData.sentence}</div>
+
+      {/* Multiple choice options */}
+      <div className="options-grid">
+        {clozeData.options.map((option, index) => (
           <button
-            key={option}
-            className="answerButtons"
-            onClick={() => {
-              const selectedOption = option;
-              handleAnswer(selectedOption);
-            }}
+            key={index}
+            className="primaryButton"
+            onClick={() => handleAnswer(option === clozeData.word)}
           >
             {option}
           </button>
         ))}
-        {resultFeedback.message && (
-          <div
-            className={`resultFeedback ${
-              resultFeedback.isCorrect ? "correct" : "incorrect"
-            }`}
-          >
-            {resultFeedback.message}
-          </div>
-        )}
+        {resultFeedback}
       </div>
     </div>
   );

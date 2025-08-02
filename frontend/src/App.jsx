@@ -81,7 +81,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route
-              path="/quiz"
+              path="/quiz/:category"
               element={
                 <Quiz
                   onAnswer={handleAnswer}
