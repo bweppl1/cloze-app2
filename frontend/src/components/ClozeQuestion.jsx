@@ -6,7 +6,7 @@ const ClozeQuestion = ({ showTranslations, onAnswer }) => {
   const [clozeData, setClozeData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [isAnswering, setIsAnswering] = useState("false");
+  const [isAnswering, setIsAnswering] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [resultFeedback, setResultFeedback] = useState({
     message: "",
@@ -52,24 +52,28 @@ const ClozeQuestion = ({ showTranslations, onAnswer }) => {
   };
 
   const handleAnswer = (option) => {
+    if (isAnswering) {
+      return;
+    }
+
     const isCorrect = option === clozeData?.correctAnswer;
     setSelectedOption(option);
     setResultFeedback({
       message: isCorrect ? "Correct!" : "Incorrect!",
-      isCorrect,
+      isCorrect: isCorrect ? true : false,
     });
     onAnswer(isCorrect);
 
     setIsAnswering(true);
 
     setTimeout(() => {
-      fetchCloze();
-      setResultFeedback({ message: "", isCorrect: null });
       setIsAnswering(false);
+      setResultFeedback({ message: "", isCorrect: null });
+      fetchCloze();
     }, 2000); // 2 second pause on answering
   };
 
-  if (loading) return <div>Loading {category} questions...</div>;
+  // if (loading) return <div>Loading {category} questions...</div>;
   if (error) return <div>Error: {error}</div>;
   if (!clozeData) return <div>No question data available</div>;
 
@@ -93,9 +97,7 @@ const ClozeQuestion = ({ showTranslations, onAnswer }) => {
         {clozeData.options.map((option, index) => (
           <button
             key={index}
-            className={`primaryButton ${
-              selectedOption === option ? "selected" : ""
-            }`}
+            className="primaryButton"
             onClick={() => handleAnswer(option)}
           >
             {option}
@@ -103,7 +105,7 @@ const ClozeQuestion = ({ showTranslations, onAnswer }) => {
         ))}
       </div>
 
-      {resultFeedback.isCorrect && (
+      {resultFeedback.message && (
         <div
           className={`resultFeedback ${
             resultFeedback.isCorrect ? "correct" : "incorrect"

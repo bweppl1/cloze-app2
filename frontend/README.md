@@ -46,3 +46,9 @@ Gamification
 [ ] Category Performance Metrics
 [X] Streak Counter
 [ ] 
+
+Top10
+const top10 = ["de", "el", "la", "que", "en", "y", "a", "del", "se", "los"];
+
+TOP 50
+
