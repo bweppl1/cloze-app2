@@ -5,12 +5,10 @@ const UserDisplay = ({ xp, lvl, streak }) => {
     let pips = [];
     let emptyPips = 5 - xp;
     for (let i = 0; i < xp; i++) {
-      pips.push(
-        <div key={`full-${i}`} className="experiencePip fullPip"></div>
-      );
+      pips.push(<div key="full-${i}" className="experiencePip fullPip"></div>);
     }
     for (let i = 0; i < emptyPips; i++) {
-      pips.push(<div key={`empty-${i}`} className="experiencePip"></div>);
+      pips.push(<div key="empty-${i}" className="experiencePip"></div>);
     }
 
     return pips;
