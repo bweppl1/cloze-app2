@@ -2,7 +2,7 @@ import "dotenv/config";
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import clozeRoutes from "./routes/clozeRoutes.js";
+import clozeRoutes from "../routes/clozeRoutes.js";
 
 // port, listening for requests
 const port = process.env.PORT || 4000;

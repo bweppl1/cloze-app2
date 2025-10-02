@@ -7,8 +7,9 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:4000", // Your backend port
+        target: "https://cloze-encounters-backend.vercel.app", // Your backend URL
         changeOrigin: true,
+        secure: true,
       },
     },
   },
