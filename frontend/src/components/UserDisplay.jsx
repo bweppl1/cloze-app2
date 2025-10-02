@@ -1,18 +1,23 @@
 import { useState, useEffect } from "react";
 
 const UserDisplay = ({ xp, lvl, streak }) => {
-  const renderPips = () => {
+  const [pipCount, setPipCount] = useState(xp);
+
+  useEffect(() => {
     let pips = [];
     let emptyPips = 5 - xp;
+    console.log("emptyPips:" + emptyPips);
     for (let i = 0; i < xp; i++) {
-      pips.push(<div key="full-${i}" className="experiencePip fullPip"></div>);
+      pips.push(<div className="experiencePip fullPip"></div>);
     }
     for (let i = 0; i < emptyPips; i++) {
-      pips.push(<div key="empty-${i}" className="experiencePip"></div>);
+      pips.push(<div className="experiencePip"></div>);
     }
 
-    return pips;
-  };
+    setPipCount(pips);
+    console.log("xp:" + xp);
+    console.log("pips:" + pips);
+  }, [xp]);
 
   return (
     <div className="userDisplay">
@@ -23,7 +28,7 @@ const UserDisplay = ({ xp, lvl, streak }) => {
       <div className="userContent">
         <span className="userLevel">Level: {lvl}</span>
         <span className="userExperience">Experience Progress:</span>
-        <div className="experienceBar">{renderPips()}</div>
+        <div className="experienceBar">{pipCount}</div>
         <span className="streakCounter">Streak: {streak}</span>
       </div>
     </div>
