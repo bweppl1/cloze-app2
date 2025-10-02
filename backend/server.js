@@ -5,7 +5,7 @@ import cors from "cors";
 import clozeRoutes from "./routes/clozeRoutes.js";
 
 // port, listening for requests
-const port = process.env.PORT;
+const port = process.env.PORT || 4000;
 
 // abstract sensitive information
 // dotenv.config();
