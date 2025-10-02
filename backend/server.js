@@ -24,18 +24,11 @@ mongoose
     dbName: "cloze-encounters",
   })
   .then(() => {
-    console.log("Connected to DB!");
-    // Only listen on port in development
-    if (process.env.NODE_ENV !== "production") {
-      app.listen(port, () => {
-        console.log(`Listening on port ${port}!`);
-      });
-    }
+    app.listen(port, () => {
+      console.log(`Connected to DB & Listening on port ${port}!`);
+    });
   })
   .catch((error) => {
     console.error("database error: ", error.message);
     process.exit(1);
   });
-
-// Export the app for Vercel
-export default app;
